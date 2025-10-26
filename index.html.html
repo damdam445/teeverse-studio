@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TeeVerse Studio - T-Shirt Designs Portfolio</title>
+    <meta name="description" content="Explore unique T-shirt designs from TeeVerse Studio. Shop on Teepublic and discover vintage-inspired art.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
+    <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
+    <script src="https://unpkg.com/localforage@1.10.0/dist/localforage.min.js"></script>
+    <!-- Google Analytics (replace with your GA ID) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'GA_MEASUREMENT_ID');
+    </script>
+    <style>
+        body { font-family: 'Montserrat', sans-serif; background: linear-gradient(135deg, #f5f5dc 0%, #ffe4b5 100%); transition: background 0.3s; }
+        .dark { background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%); color: #e2e8f0; }
+        .hero-bg { background: url('https://via.placeholder.com/1920x1080?text=Vintage+Texture') no-repeat center/cover; animation: float 6s ease-in-out infinite; }
+        @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-10px); } }
+        .card-hover { transition: transform 0.3s; } .card-hover:hover { transform: scale(1.05); }
+        .swiper-slide { display: flex; justify-content: center; }
+    </style>
+</head>
+<body class="text-gray-800 dark:text-gray-200">
+    <!-- Header -->
+    <header class="fixed top-0 w-full bg-white/80 dark:bg-gray-800/80 backdrop-blur-md z-50 shadow-md">
+        <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="text-2xl font-bold">TeeVerse Studio</div>
+            <ul class="hidden md:flex space-x-6">
+                <li><a href="#home" class="hover:text-orange-500">Home</a></li>
+                <li><a href="#gallery" class="hover:text-orange-500">Gallery</a></li>
+                <li><a href="#featured" class="hover:text-orange-500">Featured</a></li>
+                <li><a href="#collections" class="hover:text-orange-500">Collections</a></li>
+                <li><a href="#favorites" class="hover:text-orange-500">Favorites</a></li>
+                <li><a href="#contact" class="hover:text-orange-500">Contact</a></li>
+            </ul>
+            <button id="theme-toggle" class="p-2 bg-gray-200 dark:bg-gray-700 rounded">🌙</button>
+        </nav>
+    </header>
+
+    <!-- Home Section -->
+    <section id="home" class="hero-bg h-screen flex items-center justify-center text-center text-white">
+        <div class="max-w-2xl">
+            <h1 class="text-5xl font-bold mb-4">TeeVerse Studio</h1>
+            <p class="text-xl mb-8">Vintage-inspired T-shirt designs that tell a story. Shop on Teepublic.</p>
+            <button onclick="document.getElementById('gallery').scrollIntoView({behavior:'smooth'})" class="bg-orange-500 hover:bg-orange-600 text-white px-8 py-3 rounded-full font-semibold">Shop Now</button>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="py-16 container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center mb-8">Gallery</h2>
+        <div class="mb-8 flex flex-wrap justify-center gap-4">
+            <input id="search" type="text" placeholder="Search designs..." class="p-2 border rounded w-full md:w-1/3">
+            <select id="category-filter" class="p-2 border rounded"><option>All Categories</option><option>Animals</option><option>Holidays</option></select>
+            <select id="color-filter" class="p-2 border rounded"><option>All Colors</option><option>Red</option><option>Blue</option></select>
+            <select id="style-filter" class="p-2 border rounded"><option>All Styles</option><option>Vintage</option><option>Cartoon</option></select>
+        </div>
+        <div id="gallery-grid" class="grid grid-cols-1 md:grid-cols-3 gap-8 isotope">
+            <!-- Sample Product Cards (Replace with dynamic data) -->
+            <div class="card card-hover bg-white dark:bg-gray-800 p-4 rounded-lg shadow-md" data-category="animals" data-color="blue" data-style="cartoon">
+                <img src="https://via.placeholder.com/300x400?text=Dog+Design" alt="Funny Dog T-Shirt" class="w-full h-64 object-cover rounded">
+                <h3 class="text-xl font-semibold mt-4">Funny Dog Lover</h3>
+                <p class="text-gray-600 dark:text-gray-400">A whimsical cartoon of a dog chasing its tail.</p>
+                <div class="flex justify-between mt-4">
+                    <button class="bg-blue-500 text-white px-4 py-2 rounded">Buy on Teepublic</button>
+                    <button class="heart-btn text-red-500">❤️</button>
+                </div>
+                <span class="views text-sm text-gray-500">Views: 0</span>
+            </div>
+            <!-- Add more cards dynamically -->
+        </div>
+    </section>
+
+    <!-- Featured Section -->
+    <section id="featured" class="py-16 bg-gray-100 dark:bg-gray-900">
+        <h2 class="text-3xl font-bold text-center mb-8">Featured Designs</h2>
+        <div class="swiper mySwiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide"><img src="https://via.placeholder.com/400x300?text=Bestseller" alt="Bestseller" class="rounded"></div>
+                <!-- Add more slides -->
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+    </section>
+
+    <!-- Collections Page (Simplified as a section) -->
+    <section id="collections" class="py-16 container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center mb-8">Collections</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="bg-white dark:bg-gray-800 p-4 rounded shadow"><h3>Summer Vibes</h3><p>Beach-themed designs.</p></div>
+            <!-- Add more -->
+        </div>
+    </section>
+
+    <!-- Favorites Page -->
+    <section id="favorites" class="py-16 container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center mb-8">Your Favorites</h2>
+        <div id="favorites-list" class="grid grid-cols-1 md:grid-cols-3 gap-8"></div>
+    </section>
+
+    <!-- Contact Page -->
+    <section id="contact" class="py-16 bg-gray-100 dark:bg-gray-900">
+        <h2 class="text-3xl font-bold text-center mb-8">Contact</h2>
+        <form class="max-w-md mx-auto">
+            <input type="text" placeholder="Name" class="w-full p-2 mb-4 border rounded">
+            <input type="email" placeholder="Email" class="w-full p-2 mb-4 border rounded">
+            <textarea placeholder="Message" class="w-full p-2 mb-4 border rounded"></textarea>
+            <button type="submit" class="bg-orange-500 text-white px-4 py-2 rounded">Send</button>
+        </form>
+        <div class="text-center mt-8">
+            <a href="#" class="mx-4">Instagram</a><a href="#" class="mx-4">Pinterest</a><a href="#" class="mx-4">Teepublic</a>
+        </div>
+    </section>
+
+    <script>
+        // Theme Toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark');
+            localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
+        });
+        if (localStorage.getItem('theme') === 'dark') document.body.classList.add('dark');
+
+        // Gallery Filtering & Search
+        const iso = new Isotope('#gallery-grid', { itemSelector: '.card', layoutMode: 'masonry' });
+        document.getElementById('search').addEventListener('input', (e) => {
+            iso.arrange({ filter: (item) => item.querySelector('h3').textContent.toLowerCase().includes(e.target.value.toLowerCase()) });
+        });
+        // Add similar for filters (category, color, style)
+
+        // Favorites
+        document.querySelectorAll('.heart-btn').forEach(btn => {
+            btn.addEventListener('click', async (e) => {
+                const card = e.target.closest('.card');
+                const favorites = await localforage.getItem('favorites') || [];
+                if (!favorites.includes(card.dataset.id)) {
+                    favorites.push(card.dataset.id);
+                    await localforage.setItem('favorites', favorites);
+                    // Update favorites list
+                }
+            });
+        });
+
+        // Swiper for Featured
+        const swiper = new Swiper('.mySwiper', { pagination: { el: '.swiper-pagination' }, autoplay: { delay: 3000 } });
+
+        // View Counters (Simple increment on load)
+        document.querySelectorAll('.views').forEach(el => {
+            let count = parseInt(localStorage.getItem(el.closest('.card').dataset.id) || 0) + 1;
+            el.textContent = `Views: ${count}`;
+            localStorage.setItem(el.closest('.card').dataset.id, count);
+        });
+
+        // Dynamic Data Loading (Stub for Google Sheets API)
+        // Use fetch() to load JSON from Google Sheets API and populate gallery.
+    </script>
+</body>
+</html>
